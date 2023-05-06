@@ -1,11 +1,6 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import {
-  ImgCircle,
-  ImgLine,
-  TextWrapper,
-  UserCardStyled,
-} from "./UserCard.styled";
+import { ImgCircle, TextWrapper, UserCardStyled } from "./UserCard.styled";
 import { ButtonStyled } from "../../styles/Button.styled";
 
 export const UserCard = ({ userInfo, following, setFollowing }) => {
@@ -13,26 +8,25 @@ export const UserCard = ({ userInfo, following, setFollowing }) => {
 
   const isFollowing = following.includes(id);
 
-  const follow = () => {
-    setFollowing([...following, id]);
-  };
-
-  const unfollow = () => {
-    setFollowing(following.filter((followingUser) => followingUser !== id));
+  const changeFollowing = () => {
+    isFollowing
+      ? setFollowing(following.filter((followingUser) => followingUser !== id))
+      : setFollowing([...following, id]);
   };
 
   return (
     <UserCardStyled>
-      <ImgLine>
-        <ImgCircle>
-          <img
-            src={avatar ? avatar : require("../../images/Stub.png")}
-            alt={user}
-          />
-        </ImgCircle>
-      </ImgLine>
+      <ImgCircle>
+        <img
+          src={avatar ? avatar : require("../../images/Stub.png")}
+          alt={user}
+        />
+      </ImgCircle>
       <TextWrapper>
-        <Link to={"/tweets"} state={{ name: user }}>{`${tweets} TWEETS`}</Link>
+        <Link
+          to={"/tweets"}
+          state={{ name: user }}
+        >{`${tweets.toLocaleString()} TWEETS`}</Link>
         <p>{`${(isFollowing
           ? followers + 1
           : followers
@@ -40,7 +34,7 @@ export const UserCard = ({ userInfo, following, setFollowing }) => {
       </TextWrapper>
       <ButtonStyled
         type="button"
-        onClick={isFollowing ? unfollow : follow}
+        onClick={changeFollowing}
         isFollowing={isFollowing}
       >
         {isFollowing ? "FOLLOWING" : "FOLLOW"}
