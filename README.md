@@ -1,4 +1,4 @@
-An app show the cards taken by back-end on mockapi.io.
+Фpp show the cards taken by back-end on mockapi.io.
 
 ![Desktop Screenshot 2023 05 06 - 14 39 39 38](https://user-images.githubusercontent.com/103362175/236684918-db34b295-b9e4-4943-b29c-389d6cae6573.png)
 
